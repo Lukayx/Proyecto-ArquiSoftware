@@ -1,0 +1,31 @@
+/* page.module.css */
+
+.nav { /* Clase local para el nav */
+    background-color: #333; /* Fondo oscuro para la navegación */
+    padding: 1rem; /* Espaciado interno en la navegación */
+  }
+  
+  .navList {
+    list-style-type: none; /* Sin viñetas */
+    margin: 0; /* Sin margen */
+    padding: 0; /* Sin padding */
+    display: flex; /* Usa flexbox para alinear los elementos horizontalmente */
+    justify-content: space-around; /* Espacio entre elementos */
+  }
+  
+  .navList li {
+    /* Puedes agregar estilos adicionales para los elementos de la lista aquí */
+  }
+  
+  .navLink {
+    color: white; /* Color del texto de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+    padding: 0.5rem 1rem; /* Espaciado interno para los enlaces */
+    transition: background-color 0.3s; /* Transición suave para el fondo */
+  }
+  
+  .navLink:hover {
+    background-color: #555; /* Color de fondo al pasar el mouse sobre el enlace */
+    border-radius: 4px; /* Bordes redondeados al pasar el mouse */
+  }
+  
