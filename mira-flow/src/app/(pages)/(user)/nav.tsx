@@ -15,3 +15,8 @@ const Nav = () => {
 };
 
 export default Nav;
+
+
+import { NextPage } from 'next'
+
+

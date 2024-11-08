@@ -18,7 +18,7 @@
   }
   
   .navLink {
-    color: white; /* Color del texto de los enlaces */
+    color: bla; /* Color del texto de los enlaces */
     text-decoration: none; /* Sin subrayado */
     padding: 0.5rem 1rem; /* Espaciado interno para los enlaces */
     transition: background-color 0.3s; /* Transición suave para el fondo */

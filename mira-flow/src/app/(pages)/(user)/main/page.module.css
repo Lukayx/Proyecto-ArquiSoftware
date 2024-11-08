@@ -1,0 +1,58 @@
+/* Contenedor principal: coloca section1 y section2 en fila */
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .section1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Máximo 2 columnas */
+    gap: 10px;
+    flex: 2;
+  }
+  
+  .card {
+    background-color: #f0f0f0;
+    padding: 20px; /* Aumenta el espacio interno */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    font-size: 1.1rem; /* Aumenta el tamaño del texto */
+    min-width: 200px; /* Ajusta el ancho mínimo */
+    min-height: 150px; /* Ajusta la altura mínima */
+  }
+  
+  /* Sección de la barra de búsqueda y filtros */
+  .section2 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1; /* Ocupa menos espacio que section1 */
+  }
+  
+  .searchBar {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .filterList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .filterItem {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filterItem:hover {
+    background-color: #d0d0d0;
+  }
+  
