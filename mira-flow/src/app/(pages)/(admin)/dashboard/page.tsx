@@ -1,30 +1,29 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import logo from "./logo.jpg";
 
 export default function Home() {
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-        </div> {/* Cierre correcto del div */}
-      </main>
+      <header>
+        <ul className={styles.seccionesHeader}>
+          <li>
+            <Image src={logo} alt="logo" width={100} height={100} />
+          </li>
+          <li>
+            <h1>Admin Dashboard</h1>
+          </li>
+          <li>
+            <a href="/admin/dashboard">Dashboard</a>
+          </li>
+          <li>
+            <a href="/admin/users">Users</a>
+          </li>
+          <li>
+            <a href="/admin/settings">Settings</a>
+          </li>
+        </ul>
+      </header>
     </div>
   );
 }
