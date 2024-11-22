@@ -1,0 +1,105 @@
+// Especifica el tipo de base de datos que estás utilizando, por ejemplo PostgreSQL, MySQL, SQLite, etc.
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"  // Este es el generador de cliente Prisma
+}
+
+
+
+// Tipos ENUM
+enum EstadoClienteTipo {
+  Baneado
+  NoBaneado
+}
+
+enum EstadoProductoTipo {
+  EnVenta
+  Agotado
+}
+
+// Modelo Usuario
+model Usuario {
+  id       Int        @id @default(autoincrement()) // SERIAL PRIMARY KEY
+  Nombre   String     @map("Nombre")               // VARCHAR(255) NOT NULL
+  Email    String     @unique @map("Email")        // VARCHAR(255) UNIQUE
+
+  // Relaciones
+  admin    Admin?    @relation("UsuarioAdmin")
+  cliente  Cliente?  @relation("UsuarioCliente")
+
+  @@map("Usuario") // Mapea el modelo a la tabla Usuario
+}
+
+// Modelo Admin
+model Admin {
+  id         Int      @id @default(autoincrement()) // SERIAL PRIMARY KEY
+  idUsuario  Int      @unique @map("idUsuario")    // Se hace único para relación uno a uno
+
+  // Relación con Usuario
+  usuario    Usuario  @relation("UsuarioAdmin", fields: [idUsuario], references: [id])
+
+  @@map("Admin")
+}
+
+// Modelo Cliente
+model Cliente {
+  id              Int                @id @default(autoincrement()) // SERIAL PRIMARY KEY
+  idUsuario       Int                @unique @map("idUsuario")    // Se hace único para relación uno a uno
+  EstadoCliente   EstadoClienteTipo
+  Telefono        String?            @map("Telefono")             // VARCHAR(15) (opcional)
+
+  // Relación con Usuario
+  usuario         Usuario            @relation("UsuarioCliente", fields: [idUsuario], references: [id])
+  
+  // Relación inversa con Contacto
+  contactos       Contacto[]         @relation("ClienteContactos")  // Relación uno a muchos con Contacto
+  // Relación con Producto
+  productos       Producto[]         @relation("ClienteProductos") // Relación uno a muchos con Producto
+
+  @@map("Cliente")
+}
+
+// Modelo Producto
+model Producto {
+  id               Int                  @id @default(autoincrement()) // SERIAL PRIMARY KEY
+  EstadoProducto   EstadoProductoTipo
+  Precio           Float               @map("Precio")                // FLOAT NOT NULL
+  Descripcion      String?             @map("Descripcion")           // TEXT (opcional)
+  Categoria        String?             @map("Categoria")             // VARCHAR(255) (opcional)
+  Vendedor         Int                 @map("Vendedor")              // INT NOT NULL
+  FechaPublicacion DateTime?           @map("FechaPublicacion")      // DATE (opcional)
+
+  // Relación con Cliente (Vendedor)
+  vendedor         Cliente             @relation("ClienteProductos", fields: [Vendedor], references: [id])
+
+  // Relación con Venta
+  ventas           Venta[]                                             
+
+  @@map("Producto")
+}
+
+// Modelo Venta
+model Venta {
+  id         Int       @id @default(autoincrement()) // SERIAL PRIMARY KEY
+  Producto   Int       @map("Producto")             // INT NOT NULL
+
+  // Relación con Producto
+  producto   Producto   @relation(fields: [Producto], references: [id])
+
+  @@map("Venta")
+}
+
+// Modelo Contacto
+model Contacto {
+  id         Int       @id @default(autoincrement()) // SERIAL PRIMARY KEY
+  idCliente  Int       @map("idCliente")            // INT NOT NULL
+
+  // Relación con Cliente
+  cliente    Cliente    @relation("ClienteContactos", fields: [idCliente], references: [id])
+
+  @@map("Contacto")
+}
