@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id      Int      @id @default(autoincrement())
+  Nombre  String   @map("Nombre")
+  Email   String   @unique @map("Email")
+  admin   Admin?   @relation("UsuarioAdmin")
+  cliente Cliente? @relation("UsuarioCliente")
+
+  @@map("Usuario")
+}
+
+model Admin {
+  id        Int     @id @default(autoincrement())
+  idUsuario Int     @unique @map("idUsuario")
+  usuario   Usuario @relation("UsuarioAdmin", fields: [idUsuario], references: [id])
+
+  @@map("Admin")
+}
+
+model Cliente {
+  id            Int               @id @default(autoincrement())
+  idUsuario     Int               @unique @map("idUsuario")
+  EstadoCliente EstadoClienteTipo
+  Telefono      String?           @map("Telefono")
+  usuario       Usuario           @relation("UsuarioCliente", fields: [idUsuario], references: [id])
+  contactos     Contacto[]        @relation("ClienteContactos")
+  productos     Producto[]        @relation("ClienteProductos")
+
+  @@map("Cliente")
+}
+
+model Producto {
+  id               Int                @id @default(autoincrement())
+  EstadoProducto   EstadoProductoTipo
+  Precio           Float              @map("Precio")
+  Descripcion      String?            @map("Descripcion")
+  Categoria        String?            @map("Categoria")
+  Vendedor         Int                @map("Vendedor")
+  FechaPublicacion DateTime?          @map("FechaPublicacion")
+  vendedor         Cliente            @relation("ClienteProductos", fields: [Vendedor], references: [id])
+  ventas           Venta[]
+
+  @@map("Producto")
+}
+
+model Venta {
+  id       Int      @id @default(autoincrement())
+  Producto Int      @map("Producto")
+  producto Producto @relation(fields: [Producto], references: [id])
+
+  @@map("Venta")
+}
+
+model Contacto {
+  id        Int     @id @default(autoincrement())
+  idCliente Int     @map("idCliente")
+  cliente   Cliente @relation("ClienteContactos", fields: [idCliente], references: [id])
+
+  @@map("Contacto")
+}
+
+enum EstadoClienteTipo {
+  Baneado
+  NoBaneado
+}
+
+enum EstadoProductoTipo {
+  EnVenta
+  Agotado
+}

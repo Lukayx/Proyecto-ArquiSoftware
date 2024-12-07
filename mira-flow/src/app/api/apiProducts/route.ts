@@ -1,23 +1,21 @@
-import { PrismaClient } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/libs/prisma';
 
-const prisma = new PrismaClient();
+export async function GET(req: Request) {
+  try {
+    // Obtener el conteo de productos
+    const productosCount = await prisma.producto.count();
 
-export const GET = async () => {
-    try {
-        // Consulta para obtener todos los productos con EstadoProducto "EnVenta"
-        const products = await prisma.producto.findMany({
-            where: {
-                EstadoProducto: "EnVenta", // Filtra por estado
-            },
-        });
-
-        return NextResponse.json(products, { status: 200 });
-    } catch (error) {
-        console.error("Error fetching products:", error);
-        return NextResponse.json(
-            { error: "Failed to fetch products" },
-            { status: 500 }
-        );
-    }
-};
+    // Retornar el conteo de productos en la respuesta JSON
+    return NextResponse.json({
+      message: 'Conteo de productos obtenido con éxito',
+      productosCount, // Incluir el conteo de productos
+    });
+  } catch (error) {
+    console.error('Error al obtener estadísticas:', error);
+    return NextResponse.json(
+      { error: 'Error al obtener estadísticas' },
+      { status: 500 }
+    );
+  }
+}
