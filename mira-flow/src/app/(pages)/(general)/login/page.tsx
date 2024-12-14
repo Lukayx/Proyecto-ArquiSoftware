@@ -22,7 +22,7 @@ export default function Login() {
       if (data.message === 'Usuario encontrado con éxito') {
         // Aquí puedes agregar el proceso para validar la contraseña si lo necesitas
         // Por ejemplo: si data.usuario.password === password
-        router.push('/dashboard');
+        router.push('/main');
       } else {
         setError('Usuario no encontrado');
       }
