@@ -24,6 +24,25 @@ export default function Home() {
           </li>
         </ul>
       </header>
+      <main>
+        <h1>Dashboard</h1>
+      </main>
+      <footer>
+        <ul className={styles.seccionesFooter}>
+          <li>
+            <a href="/general/login">Login</a>
+          </li>
+          <li>
+            <a href="/general/register">Register</a>
+          </li>
+          <li>
+            <a href="/user/profile">Profile</a>
+          </li>
+          <li>
+            <a href="/user/products">Products</a>
+          </li>
+        </ul>
+      </footer>
     </div>
   );
 }
