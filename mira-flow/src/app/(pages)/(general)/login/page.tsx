@@ -14,7 +14,7 @@ export default function Login() {
 
     try {
       // Construir la URL del endpoint con el email ingresado
-      const response = await fetch(`/api/apiLogin/${email}`);
+      const response = await fetch(`/api/getEmail/${email}`);
 
       const data = await response.json();
 
