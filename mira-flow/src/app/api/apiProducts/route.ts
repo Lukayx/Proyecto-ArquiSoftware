@@ -3,18 +3,18 @@ import { prisma } from '@/libs/prisma';
 
 export async function GET(req: Request) {
   try {
-    // Obtener el conteo de productos
-    const productosCount = await prisma.producto.count();
+    // Obtener todos los productos
+    const productos = await prisma.producto.findMany();
 
-    // Retornar el conteo de productos en la respuesta JSON
+    // Retornar los productos en la respuesta JSON
     return NextResponse.json({
-      message: 'Conteo de productos obtenido con éxito',
-      productosCount, // Incluir el conteo de productos
+      message: 'Productos obtenidos con éxito',
+      productos, // Incluir todos los productos
     });
   } catch (error) {
-    console.error('Error al obtener estadísticas:', error);
+    console.error('Error al obtener productos:', error);
     return NextResponse.json(
-      { error: 'Error al obtener estadísticas' },
+      { error: 'Error al obtener productos' },
       { status: 500 }
     );
   }
