@@ -10,11 +10,17 @@ COPY package*.json ./
 # Instalar dependencias
 RUN npm install
 
-# Ejecutar Prisma Generate
-RUN npx prisma generate
-
 # Copiar el resto de los archivos del proyecto
 COPY . .
+
+# Hacer migración de la base de datos
+RUN npx prisma migrate deploy
+
+# Hacer pull de la base de datos para sincronizar los cambios
+RUN npx prisma db pull
+
+# Ejecutar Prisma Generate
+RUN npx prisma generate
 
 # Construir la aplicación
 RUN npm run build
