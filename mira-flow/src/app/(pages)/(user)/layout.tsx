@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
 // Metadatos de la página
 export const metadata = {
-  title: 'holas geis',
+  title: 'Miraflow',
   description: 'luciano uwu, hola ',
 };
 

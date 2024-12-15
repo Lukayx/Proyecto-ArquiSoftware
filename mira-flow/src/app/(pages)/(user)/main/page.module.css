@@ -1,58 +1,174 @@
-/* Contenedor principal: coloca section1 y section2 en fila */
 .container {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .section1 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Máximo 2 columnas */
-    gap: 10px;
-    flex: 2;
-  }
-  
-  .card {
-    background-color: #f0f0f0;
-    padding: 20px; /* Aumenta el espacio interno */
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    font-size: 1.1rem; /* Aumenta el tamaño del texto */
-    min-width: 200px; /* Ajusta el ancho mínimo */
-    min-height: 150px; /* Ajusta la altura mínima */
-  }
-  
-  /* Sección de la barra de búsqueda y filtros */
-  .section2 {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    flex: 1; /* Ocupa menos espacio que section1 */
-  }
-  
-  .searchBar {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-  
-  .filterList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .filterItem {
-    background-color: #e0e0e0;
-    padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .filterItem:hover {
-    background-color: #d0d0d0;
-  }
-  
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+
+.container main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.container main .content{
+  width: 100%;
+  height: 100%;
+  padding: 0 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  /* background-color: red; */
+  gap: 1rem;
+}
+
+.container main .content .products {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit , minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.container main .content .products .product{
+  position: relative;
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
+}
+
+.container main .content .products .product:hover{
+  transform: scale(1.1);
+}
+
+.container main .content .products .product img{
+  height: 200px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.container main .content .products .product .description{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ccc;
+  transition: all 0.2s;
+  border-radius: 10px;
+  padding: 0 20px;
+}
+
+.container main .content .products .product .description p{
+  text-align: center;
+}
+
+.container main .content .products .product:hover .description{
+  opacity: 1;
+}
+
+.container main .content .filters{
+  /* background-color: blue; */
+  height: 100%;
+  width: 30%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 0;
+  color: #fff;
+}
+
+.container main .content .filters .searchSection{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 5px 20px;
+  width: 100%;
+  /* background-color: green; */
+}
+
+.container main .content .filters .searchSection .icon{
+  height: 40px;
+  padding: 5px;
+  background-color: #b1a9a9;
+  border-radius: 5px 0 0 5px;
+}
+
+.container main .content .filters .searchSection input{
+  height: 40px;
+  width: 70%;
+  padding-left: 10px;
+  font-size: large;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0 5px 5px 0;
+  /* color: #757575; */
+}
+
+.container main .content .filters .searchSection input:active,
+.container main .content .filters .searchSection input:focus{
+  outline: none; /* Asegura que el borde esté desactivado también en estado activo */
+}
+
+.container main .content .filters .filterSection {
+  /* height: 70%; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(142, 114, 114);
+  height: 400px;
+  width: 80%;
+  padding: 20px 0;
+  border-radius: 10px;
+}
+
+.container main .content .filters .filterSection ul{
+  list-style: none;
+}
+
+.container main .content .filters .filterSection ul li{
+  padding: 10px 0;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.container main .content .filters .filterSection ul li input{
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}
+
+.container footer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(59, 59, 59);
+}
+
+.container footer ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  list-style: none;
+  color: #ccc;
+}
+/* .seccionesHeader */
