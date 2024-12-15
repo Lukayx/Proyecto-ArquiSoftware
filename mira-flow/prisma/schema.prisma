@@ -42,7 +42,7 @@ model Producto {
   EstadoProducto   EstadoProductoTipo
   Precio           Float              @map("Precio")
   Descripcion      String?            @map("Descripcion")
-  Categoria        String?            @map("Categoria")
+  Nombre           String?            @map("Nombre")
   Vendedor         Int                @map("Vendedor")
   FechaPublicacion DateTime?          @map("FechaPublicacion")
   vendedor         Cliente            @relation("ClienteProductos", fields: [Vendedor], references: [id])
