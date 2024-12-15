@@ -1,35 +1,73 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import product from "./assets/product.png"
 
-const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
-
-export default async function Home() {
-    // await sleep(2000); // Espera 2 segundos
-    // throw new Error("error Eres demasiado wap@");
+export default function Home() {
+  const products = Array.from({ length: 10 }, (_, i) => ({
+    id: i,
+    name: `Producto ${i + 1}`,
+    description: `Descripcion del producto ${i + 1}`,
+    image: product.src,
+  }));
 
   return (
-    <section className={styles.container}>
-      <section className={styles.section1}>
-        {/* Aquí puedes agregar las cartas en filas y columnas */}
-        <div className={styles.card}>Carta 1</div>
-        <div className={styles.card}>Carta 2</div>
-        <div className={styles.card}>Carta 3</div>
-        <div className={styles.card}>Carta 4</div>
-        <div className={styles.card}>Carta 5</div>
-        <div className={styles.card}>Carta 6</div>
-        {/* Agrega más cartas según sea necesario */}
-      </section>
+    <div className={styles.container}>
+      <main>
+        <div className={styles.content}>
+          <div className={styles.products}>
+            {products.map((product) => (
+              <div key={product.id} className={styles.product}>
+                <img src={product.image} alt={product.name} />
+                <div className={styles.description}>
+                  <h2>{product.name}</h2>
+                  <p>{product.description}</p>
+                </div>
+              </div>
+            ))}
 
-      <section className={styles.section2}>
-        {/* Barra de búsqueda */}
-        <input type="text" placeholder="Buscar..." className={styles.searchBar} />
-        {/* Lista de filtros */}
-        <ul className={styles.filterList}>
-          <li className={styles.filterItem}>Filtro 1</li>
-          <li className={styles.filterItem}>Filtro 2</li>
-          <li className={styles.filterItem}>Filtro 3</li>
+          </div>
+          <div className={styles.filters}>
+            <div className={styles.searchSection}>
+              <FontAwesomeIcon icon={faSearch} className={styles.icon}/>
+              <input type="text" placeholder="buscar..."/>
+            </div>
+            <div className={styles.filterSection}>
+              <h2>Filtros</h2>
+              <ul>
+                <li>
+                  <input type="checkbox" id="hogar" />
+                  <label htmlFor="hogar">Hogar</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="tecnologia" />
+                  <label htmlFor="tecnologia">Tecnologia</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="ropa" />
+                  <label htmlFor="ropa">Ropa</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <ul className={styles.seccionesFooter}>
+          <li>
+            <a href="/general/login">Login</a>
+          </li>
+          <li>
+            <a href="/general/register">Register</a>
+          </li>
+          <li>
+            <a href="/user/profile">Profile</a>
+          </li>
+          <li>
+            <a href="/user/products">Products</a>
+          </li>
         </ul>
-      </section>
-    </section>
+      </footer>
+    </div>
   );
 }
