@@ -20,7 +20,7 @@ const Nav = () => {
               </a>
             </li>
             <li>
-              <a href="/admin/users">
+              <a href="/profile">
                 Perfil
                 <FontAwesomeIcon icon={faUser} className={styles.icon}/>
               </a>
