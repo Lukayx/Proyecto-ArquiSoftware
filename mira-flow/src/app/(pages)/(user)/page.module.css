@@ -1,34 +1,47 @@
 /* page.module.css */
 
-.container{
-  background-color: #333;
+.nav{
+  background-color: rgb(196, 171, 171);
+  width: 100%;
+  color: #fff;
 }
-.nav { /* Clase local para el nav */
-    background-color: #333; /* Fondo oscuro para la navegación */
-    padding: 1rem; /* Espaciado interno en la navegación */
-  }
-  
-  .navList {
-    list-style-type: none; /* Sin viñetas */
-    margin: 0; /* Sin margen */
-    padding: 0; /* Sin padding */
-    display: flex; /* Usa flexbox para alinear los elementos horizontalmente */
-    justify-content: space-around; /* Espacio entre elementos */
-  }
-  
-  .navList li {
-    /* Puedes agregar estilos adicionales para los elementos de la lista aquí */
-  }
-  
-  .navLink {
-    color: bla; /* Color del texto de los enlaces */
-    text-decoration: none; /* Sin subrayado */
-    padding: 0.5rem 1rem; /* Espaciado interno para los enlaces */
-    transition: background-color 0.3s; /* Transición suave para el fondo */
-  }
-  
-  .navLink:hover {
-    background-color: #555; /* Color de fondo al pasar el mouse sobre el enlace */
-    border-radius: 4px; /* Bordes redondeados al pasar el mouse */
-  }
-  
+
+.seccionesHeader{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.seccionesHeader .seccionesHeaderIzquierda {
+  padding-left: 20px;
+  filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.5));
+
+}
+
+.seccionesHeader .seccionesHeaderDerecha{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.seccionesHeader .seccionesHeaderDerecha li{
+  padding: 1rem;
+  border-left: 2px solid rgb(137, 94, 94);
+  /* background-color: red; */
+}
+
+.seccionesHeader .seccionesHeaderDerecha li .icon{
+  height: 30px;
+  padding-left: 10px;
+}
+
+.seccionesHeader .seccionesHeaderDerecha li a{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.5));
+  font-size: large;
+}
