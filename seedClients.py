@@ -5,7 +5,7 @@ from faker import Faker
 fake = Faker()
 
 # URL del endpoint
-url = 'http://localhost:3000/api/postClient'
+url = 'http://172.29.16.1:3000/api/postClient'
 
 # Función para generar un teléfono aleatorio
 def generar_telefono():
