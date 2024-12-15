@@ -15,7 +15,7 @@ const Nav = () => {
           <div className={styles.seccionesHeaderDerecha}>
             <li>
               <a href="/admin/dashboard">
-                Mis Productos 
+                <span>Mis Productos </span>
                 <FontAwesomeIcon icon={faShoppingCart} className={styles.icon}/>
               </a>
             </li>
