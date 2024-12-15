@@ -10,11 +10,12 @@
   
   .profileCard {
     display: flex;
-    align-items: center;
+    align-items: top;
     justify-content: space-between; /* Espacia elementos a los extremos */
     background-color: #9e9e9e;
-    width: 60%;
-    padding: 20px;
+    width: 70%;
+    height: 30%;
+    padding: 30px;
     border-radius: 10px;
     color: white;
     position: relative;
@@ -23,12 +24,12 @@
   .buttonContainer {
     position: absolute; /* Posiciona respecto al contenedor .profileCard */
     top: 80px; /* Distancia desde arriba */
-    right: 500px; /* Distancia desde la derecha */
+    right: 100px; /* Distancia desde la derecha */
   }
   
   .avatar {
-    width: 80px;
-    height: 80px;
+    width: 170px;
+    height: 170px;
     background-color: #dcdcdc;
     border-radius: 50%;
     margin-right: 20px;
@@ -40,14 +41,15 @@
   
   .name {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 2.7rem;
     font-weight: bold;
   }
   
   .email,
   .phone,
   .description {
-    margin: 5px 0;
+    font-size: 20px;
+    margin-top:10px;
   }
   
   .icon {
@@ -66,10 +68,10 @@
     color: white;
     border: none;
     padding: 10px 20px;
-    max-width: 200px;
+    max-width: 300px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size:1.5rem;
     display: flex;
     align-items: center;
   }
@@ -78,3 +80,57 @@
     margin-right: 8px;
   }
   
+  @media (max-width: 768px) {
+    .profileCard {
+        display: flex;
+        align-items: top;
+        justify-content: space-between; /* Espacia elementos a los extremos */
+        background-color: #9e9e9e;
+        width: 100%;
+        padding: 30px;
+        border-radius: 10px;
+        color: white;
+        position: relative;
+      }
+      .avatar {
+        width: 80px;
+        height: 80px;
+        background-color: #dcdcdc;
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+      
+      .profileInfo {
+        flex: 1;
+      }
+      
+      .name {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      
+      .email,
+      .phone,
+      .description {
+        font-size: 15px;
+        margin-top:5px;
+      }
+
+    .buttonContainer {
+        margin-top:20px;
+        position: static;
+    }
+    .publishButton {
+        background-color: #792424;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        max-width: 300px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size:1.5rem;
+        display: flex;
+        align-items: center;
+      }
+}
