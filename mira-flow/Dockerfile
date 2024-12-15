@@ -1,5 +1,5 @@
 # Etapa 1: Construcción de la aplicación
-FROM node:16 AS builder
+FROM node:18 AS builder
 
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Etapa 2: Servir la aplicación
-FROM node:16
+FROM node:18
 
 WORKDIR /app
 
