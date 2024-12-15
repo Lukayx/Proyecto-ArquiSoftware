@@ -51,6 +51,11 @@ export default function Login() {
     }
   };
 
+  // Función para redirigir al formulario de registro
+  const redirectToRegister = () => {
+    router.push('/register');
+  };
+
   return (
     <div className={styles['login-container']}>
       <h1 className={styles.title}>Login</h1>
@@ -80,6 +85,11 @@ export default function Login() {
         {error && <p className={styles.error}>{error}</p>}
         <button type="submit" className={styles.button}>Iniciar sesión</button>
       </form>
+
+      {/* Botón de registro */}
+      <div className={styles['register-link']}>
+        <p>¿No tienes una cuenta? <button onClick={redirectToRegister} className={styles['register-button']}>Regístrate</button></p>
+      </div>
     </div>
   );
 }
