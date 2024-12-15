@@ -1,20 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import product from "./assets/product.png";
+import producto from "./assets/product.png";
 
 export default function Home() {
-  const products = Array.from({ length: 50 }, (_, i) => ({
-    id: i,
-    name: `Producto ${i + 1}`,
-    description: `Descripción del producto ${i + 1}`,
-    image: product.src,
-  }));
+  const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 8;
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/getProducts");
+        const data = await response.json();
+        console.log(data); // Imprime las respuestas en la consola
+        setProducts(data.productos);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+  
 
   // Calcular los productos a mostrar en la página actual
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -67,12 +78,12 @@ export default function Home() {
         <div className={styles.content}>
           <div className={styles.productsSection}>
             <div className={styles.products}>
-              {currentProducts.map((product) => (
-                <div key={product.id} className={styles.product}>
-                  <img src={product.image} alt={product.name} />
+              {currentProducts.map((product, key) => (
+                <div key={key} className={styles.product}>
+                  <img src={producto.src} />
                   <div className={styles.description}>
-                    <h2>{product.name}</h2>
-                    <p>{product.description}</p>
+                    <h2>{product.Nombre}</h2>
+                    <p>{product.Descripcion}</p>
                   </div>
                 </div>
               ))}
