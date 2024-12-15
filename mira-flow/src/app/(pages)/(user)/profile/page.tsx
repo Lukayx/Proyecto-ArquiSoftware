@@ -38,12 +38,14 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.buttonContainer}>
-        <button className={styles.publishButton}>
-          <span className={styles.icon}>
-            <FontAwesomeIcon icon={faPlus} />
-          </span>{" "}
-          Publicar Anuncio
-        </button>
+        <a href="/publish">
+          <button className={styles.publishButton}>
+            <span className={styles.icon}>
+              <FontAwesomeIcon icon={faPlus} />
+            </span>{" "}
+              Publicar Anuncio
+          </button>
+        </a>
       </div>
     </div>
   );
