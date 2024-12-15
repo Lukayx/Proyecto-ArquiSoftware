@@ -133,6 +133,7 @@
   height: 400px;
   width: 80%;
   padding: 20px 0;
+  border-radius: 10px;
 }
 
 .container main .content .filters .filterSection ul{

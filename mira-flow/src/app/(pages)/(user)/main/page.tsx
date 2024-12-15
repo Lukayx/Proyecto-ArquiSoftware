@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import product from "./assets/product.png"
 
-
 export default function Home() {
   const products = Array.from({ length: 10 }, (_, i) => ({
     id: i,
