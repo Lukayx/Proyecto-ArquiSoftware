@@ -11,12 +11,12 @@ export default function Home() {
         <div className={styles.avatar}>
         <img 
             src={photo.src}
-            alt="Avatar de Juan" 
+            alt="Avatar de Alberto" 
             className={styles.avatarImage} 
           />
         </div>
         <div className={styles.profileInfo}>
-          <h2 className={styles.name}>Juan</h2>
+          <h2 className={styles.name}>Alberto</h2>
           <p className={styles.email}>
             <span className={styles.icon}>
               <FontAwesomeIcon icon={faEnvelope} />
@@ -30,7 +30,7 @@ export default function Home() {
             +569 XXXXXXXXX
           </p>
           <p className={styles.description}>
-            Descripción de Juan, ayuda nose que mas poner aquí
+            Descripción de Alberto, ayuda nose que mas poner aquí
           </p>
         </div>
         <div className={styles.editIcon}>

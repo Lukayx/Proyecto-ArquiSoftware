@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styles from "./page.module.css"; // Asegúrate de que el nombre y la ruta del archivo sean correctos
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +8,7 @@ const Nav = () => {
       <ul className={styles.seccionesHeader}>
           <div className={styles.seccionesHeaderIzquierda}>
             <li>
-              <h1>Miraflow</h1>
+              <h1><a href="/main">Miraflow</a></h1>
             </li>
           </div>
           <div className={styles.seccionesHeaderDerecha}>
