@@ -20,7 +20,12 @@ export async function GET(req: Request, { params }: { params: { email: string } 
     // Retornar el usuario encontrado en la respuesta JSON
     return NextResponse.json({
       message: 'Usuario encontrado con éxito',
-    //   usuario, //esto para agregar info
+      usuario: {
+        id: usuario.id,  // Asegúrate de devolver el id
+        nombre: usuario.Nombre,  // Puedes devolver otros campos que necesites
+        email: usuario.Email,  // Asegúrate de devolver el email
+        // Agrega otros campos que necesites
+      },
     });
   } catch (error) {
     console.error('Error al obtener el usuario por email:', error);

@@ -1,41 +1,38 @@
 # Etapa 1: Construcción
 FROM node:18 AS builder
 
-# Directorio de trabajo en el contenedor
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copiar package.json y package-lock.json (si existe) para instalar dependencias primero
-COPY package*.json ./
+# Copia el archivo de dependencias
+COPY package.json package-lock.json ./
 
-# Instalar dependencias
+# Instala las dependencias
 RUN npm install
 
-# Copiar el resto de los archivos del proyecto
+# Copia el resto de los archivos del proyecto
 COPY . .
 
-# Hacer migración de la base de datos
-RUN npx prisma migrate deploy
-
-# Hacer pull de la base de datos para sincronizar los cambios
-RUN npx prisma db pull
-
-# Ejecutar Prisma Generate
+# Ejecuta prisma generate para generar el cliente Prisma
 RUN npx prisma generate
 
-# Construir la aplicación
+# Construye la aplicación Next.js
 RUN npm run build
 
-# Etapa 2: Servir la aplicación
+# Etapa 2: Producción
 FROM node:18 AS runner
 
-# Directorio de trabajo para la etapa de producción
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copiar solo los archivos necesarios desde la etapa anterior
-COPY --from=builder /app /app
+# Copia los archivos necesarios de la etapa de construcción
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/prisma ./prisma
 
-# Exponer el puerto en el que Next.js servirá la aplicación
+# Configura el puerto de la aplicación
 EXPOSE 3000
 
-# Comando para iniciar la aplicación en producción
-CMD ["npm", "start"]
+# Comando para ejecutar la aplicación en producción
+CMD ["npm", "run", "start"]

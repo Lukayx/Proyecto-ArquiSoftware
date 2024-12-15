@@ -1,0 +1,90 @@
+/* Estilos generales para el contenedor del formulario */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f4f6;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Estilos del formulario */
+  .login-form {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Clase para el título */
+  .title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Estilo de los campos del formulario */
+  .input-field {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Estilo al poner foco en los campos */
+  .input-field:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* Estilo del botón de envío */
+  .button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Cambio de color del botón al pasar el ratón */
+  .button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilo para mostrar mensajes de error */
+  .error {
+    color: #ff4d4d;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Estilo responsivo: adaptabilidad */
+  @media (max-width: 480px) {
+    .login-form {
+      padding: 1.5rem;
+    }
+  
+    .title {
+      font-size: 1.8rem;
+    }
+  
+    .input-field {
+      padding: 0.75rem;
+    }
+  
+    .button {
+      padding: 0.9rem;
+    }
+  }
+  
