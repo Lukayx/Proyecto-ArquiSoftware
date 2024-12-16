@@ -18,13 +18,14 @@ export default function PublicarAnuncio() {
       acc[key] = value;
       return acc;
     }, {});
-    setVendedor(cookies.user_token); // Guarda el token en el estado
+    setVendedor(cookies.user_token || null); // Guarda el token en el estado
+    console.log("Token de usuario (vendedor):", cookies.user_token);
   }, []);
 
   interface FormData {
-    nombre: string;
-    descripcion: string;
     precio: number;
+    descripcion: string;
+    nombre: string;
     vendedor: number | null;
     fechaPublicacion: string;
   }
@@ -33,14 +34,15 @@ export default function PublicarAnuncio() {
     e.preventDefault();
 
     const data: FormData = {
-      nombre,
-      descripcion,
       precio: parseFloat(precio),
+      descripcion: descripcion.trim(),
+      nombre: nombre.trim(),
       vendedor: vendedor ? parseInt(vendedor) : null, // El vendedor se obtiene del token
       fechaPublicacion: new Date().toISOString().split("T")[0], // Fecha en formato YYYY-MM-DD
     };
 
-    console.log(data);
+    console.log("Datos a enviar al servidor:", data);
+
     if (data.vendedor) {
       try {
         const response = await fetch("http://localhost:3000/api/postProduct", {
@@ -56,8 +58,10 @@ export default function PublicarAnuncio() {
         console.log("Producto publicado con éxito");
         router.push("/profile");
       } catch (error: any) {
-        console.error("Error:", error);
+        console.error("Error al enviar la petición:", error);
       }
+    } else {
+      console.error("Vendedor no definido, verifica el token en las cookies.");
     }
   };
 
