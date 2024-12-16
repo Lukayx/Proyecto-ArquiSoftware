@@ -1,0 +1,22 @@
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 10px;
+  padding: 10px;
+  transition: all 0.3s;
+
+}
+
+.container h1{
+  text-align: center;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}

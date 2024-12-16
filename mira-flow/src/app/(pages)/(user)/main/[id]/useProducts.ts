@@ -2,9 +2,6 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import producto from "../assets/product.png";
-
-
 
 interface Product {
   id: number;
@@ -17,6 +14,8 @@ export const useProduct = () => {
   const params = useParams(); // Obtiene los parámetros dinámicos de la URL
   const id = params.id; // Parámetro dinámico extraído
   const [product, setProduct] = useState<Product | null>(null);
+  const [vendedor, setVendedor] = useState(null);
+
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,6 +34,7 @@ export const useProduct = () => {
 
         const data = await response.json();
         setProduct(data.producto);
+        console.log(data);
       } catch (error) {
         setError("Error al cargar el producto.");
         console.error(error);
@@ -46,5 +46,5 @@ export const useProduct = () => {
     fetchProduct();
   }, [id]);
 
-  return { product, loading, error };
+  return { product, vendedor, loading, error };
 };
