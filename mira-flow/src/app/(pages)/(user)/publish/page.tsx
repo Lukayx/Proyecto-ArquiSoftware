@@ -21,10 +21,18 @@ export default function PublicarAnuncio() {
     setVendedor(cookies.user_token); // Guarda el token en el estado
   }, []);
 
-  const handleSubmit = async (e) => {
+  interface FormData {
+    nombre: string;
+    descripcion: string;
+    precio: number;
+    vendedor: number | null;
+    fechaPublicacion: string;
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = {
+    const data: FormData = {
       nombre,
       descripcion,
       precio: parseFloat(precio),
@@ -33,7 +41,7 @@ export default function PublicarAnuncio() {
     };
 
     console.log(data);
-    if(data.vendedor){
+    if (data.vendedor) {
       try {
         const response = await fetch("http://localhost:3000/api/postProduct", {
           method: "POST",
@@ -42,9 +50,9 @@ export default function PublicarAnuncio() {
           },
           body: JSON.stringify(data),
         });
-  
+
         if (!response.ok) throw new Error("Error al publicar el producto");
-  
+
         console.log("Producto publicado con éxito");
         router.push("/profile");
       } catch (error: any) {
