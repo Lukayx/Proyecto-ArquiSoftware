@@ -16,25 +16,31 @@ export default function ProductPage() {
       <div className={styles.product}>
         <h1>Detalles del Producto</h1>
         <div className={styles.info}>
-          <h2>Nombre del Producto: {product.Nombre}</h2>
-          <p>Descripción del producto: {product.Descripcion}</p>
+          <h2>{product.Nombre}</h2>
+          <p><strong>Descripción del producto:</strong> {product.Descripcion}</p>
           <p>
-            Estado: <strong>{product.EstadoProducto}</strong>
+          <strong>Precio:</strong> ${product.Precio}
           </p>
         </div>
         <img className={styles.img} src={producto.src} />
       </div>
-      <div>
+      <div className={styles.vendedor}>
         <h2>Detalles del Vendedor</h2>
-        <p>
-          {/* Nombre: <strong>{vendedor.Nombre}</strong> */}
-        </p>
-        <p>
-          {/* Email: <strong>{vendedor.Email}</strong> */}
-        </p>
-        <p>
-          {/* Teléfono: <strong>{vendedor.Telefono}</strong> */}
-        </p>
+        {vendedor ? (
+          <>
+            <p>
+              <strong>Nombre:</strong> {vendedor.Nombre}
+            </p>
+            <p>
+              <strong>Email:</strong> {vendedor.Email}
+            </p>
+            <p>
+              <strong>Teléfono:</strong> {vendedor.Telefono}
+            </p>
+          </>
+        ) : (
+          <p>No se encontró el vendedor.</p>
+        )}
       </div>
     </div>
   );

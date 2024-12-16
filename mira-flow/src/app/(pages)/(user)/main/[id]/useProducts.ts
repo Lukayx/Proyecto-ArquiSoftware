@@ -7,14 +7,21 @@ interface Product {
   id: number;
   Nombre: string;
   Descripcion: string;
-  EstadoProducto: string;
+  Precio: string;
+}
+
+interface Vendedor {
+  id: number;
+  Nombre: string;
+  Email: string;
+  Telefono: string;
 }
 
 export const useProduct = () => {
   const params = useParams(); // Obtiene los parámetros dinámicos de la URL
   const id = params.id; // Parámetro dinámico extraído
   const [product, setProduct] = useState<Product | null>(null);
-  const [vendedor, setVendedor] = useState(null);
+  const [vendedor, setVendedor] = useState<Vendedor | null>(null);
 
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -34,6 +41,7 @@ export const useProduct = () => {
 
         const data = await response.json();
         setProduct(data.producto);
+        setVendedor(data.vendedor);
         console.log(data);
       } catch (error) {
         setError("Error al cargar el producto.");
