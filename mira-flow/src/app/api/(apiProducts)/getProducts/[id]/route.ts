@@ -8,10 +8,13 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
       return NextResponse.json({ error: 'El ID del producto debe ser un número válido' }, { status: 400 });
     }
 
-    // Buscar el producto por su ID
+    // Buscar el producto por su ID y obtener la información del cliente (Vendedor)
     const producto = await prisma.producto.findUnique({
       where: {
         id: id,
+      },
+      include: {
+        vendedor: true, // Incluir la relación con el Cliente (vendedor)
       },
     });
 
@@ -20,10 +23,11 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
       return NextResponse.json({ error: 'Producto no encontrado' }, { status: 404 });
     }
 
-    // Retornar el producto encontrado en la respuesta JSON
+    // Retornar el producto y la información del cliente (vendedor)
     return NextResponse.json({
       message: 'Producto obtenido con éxito',
       producto, // Producto encontrado
+      vendedor: producto.vendedor, // Información del cliente (vendedor)
     });
   } catch (error) {
     console.error('Error al obtener el producto:', error);
