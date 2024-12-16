@@ -27,7 +27,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     return NextResponse.json({
       message: 'Producto obtenido con éxito',
       producto, // Producto encontrado
-      vendedor: producto.vendedor, // Información del cliente (vendedor)
+      // vendedor: producto.vendedor, // Información del cliente (vendedor)
     });
   } catch (error) {
     console.error('Error al obtener el producto:', error);
