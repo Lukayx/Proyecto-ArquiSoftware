@@ -2,14 +2,23 @@
 
 import { useState, useEffect } from "react";
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import producto from "./assets/product.png";
 
+interface Product {
+  id: number;
+  Nombre: string;
+  Descripcion: string;
+  EstadoProducto: string;
+}
+
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 8;
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,6 +35,9 @@ export default function Home() {
     fetchProducts();
   }, []);
   
+  const filteredProducts = products.filter(
+    (product) => product.EstadoProducto === "EnVenta"
+  );
 
   // Calcular los productos a mostrar en la página actual
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -72,14 +84,18 @@ export default function Home() {
     }
   };
 
+    const handleProductClick = (id: number) => {
+    router.push(`/main/${id}`);
+  };
+
   return (
     <div className={styles.container}>
       <main>
         <div className={styles.content}>
           <div className={styles.productsSection}>
             <div className={styles.products}>
-              {currentProducts.map((product, key) => (
-                <div key={key} className={styles.product}>
+              {currentProducts.map((product) => (
+                <div key={product.id} className={styles.product} onClick={() => {handleProductClick(product.id)} }>
                   <img src={producto.src} />
                   <div className={styles.description}>
                     <h2>{product.Nombre}</h2>

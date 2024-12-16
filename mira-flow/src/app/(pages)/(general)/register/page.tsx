@@ -58,7 +58,7 @@ export default function Register() {
       <h1 className={styles.title}>Registro de Cliente</h1>
       <form onSubmit={handleRegister} className={styles['register-form']}>
         <div>
-          <label htmlFor="nombre">Nombre</label>
+          <label htmlFor="nombre">Nombre:</label>
           <input
             className={styles['input-field']}
             type="text"
@@ -69,7 +69,7 @@ export default function Register() {
           />
         </div>
         <div>
-          <label htmlFor="email">Correo Electrónico</label>
+          <label htmlFor="email">Correo Electrónico:</label>
           <input
             className={styles['input-field']}
             type="email"
@@ -80,7 +80,7 @@ export default function Register() {
           />
         </div>
         <div>
-          <label htmlFor="telefono">Teléfono</label>
+          <label htmlFor="telefono">Teléfono:</label>
           <input
             className={styles['input-field']}
             type="text"
