@@ -8,15 +8,28 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
       return NextResponse.json({ error: 'El ID del producto debe ser un número válido' }, { status: 400 });
     }
 
-    // Buscar el producto por su ID y obtener la información del cliente (Vendedor) y el usuario asociado
+    // Buscar el producto por su ID, incluyendo la información del vendedor
     const producto = await prisma.producto.findUnique({
       where: {
         id: id,
       },
-      include: {
-        vendedor: {
-          include: {
-            usuario: true, // Incluir la relación con el Usuario del Cliente (vendedor)
+      select: {
+        id: true,
+        Nombre: true,
+        Precio: true,
+        Descripcion: true,
+        FechaPublicacion: true,
+        Vendedor: true, // Incluye el ID del vendedor (Cliente)
+        vendedor: { // Hacer la relación con la tabla Cliente
+          select: {
+            id: true,
+            Telefono: true,
+            usuario: { // Relación con Usuario para obtener nombre, email y teléfono
+              select: {
+                Nombre: true,
+                Email: true,
+              },
+            },
           },
         },
       },
@@ -27,12 +40,23 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
       return NextResponse.json({ error: 'Producto no encontrado' }, { status: 404 });
     }
 
-    // Retornar el producto, la información del cliente (vendedor) y del usuario asociado
+    // Retornar el producto con los datos completos del vendedor
     return NextResponse.json({
       message: 'Producto obtenido con éxito',
-      producto, // Producto encontrado
-      // vendedor: producto.vendedor, // Información del cliente (vendedor)
-      // usuario: producto.vendedor.usuario, // Información del usuario asociado al cliente (vendedor)
+      producto: {
+        id: producto.id,
+        Nombre: producto.Nombre,
+        Precio: producto.Precio,
+        Descripcion: producto.Descripcion,
+        FechaPublicacion: producto.FechaPublicacion,
+      },
+      vendedor: {
+        id: producto.vendedor.id,
+        Telefono: producto.vendedor.Telefono,
+        Nombre: producto.vendedor.usuario.Nombre,
+        Email: producto.vendedor.usuario.Email,
+        
+      },
     });
   } catch (error) {
     console.error('Error al obtener el producto:', error);
