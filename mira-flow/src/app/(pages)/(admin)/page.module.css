@@ -1,0 +1,51 @@
+/* page.module.css */
+
+.nav{
+  background-color: rgb(196, 171, 171);
+  width: 100%;
+  color: #fff;
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+.seccionesHeader{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.seccionesHeader .seccionesHeaderIzquierda {
+  padding-left: 20px;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+
+}
+
+.seccionesHeader .seccionesHeaderDerecha{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.seccionesHeader .seccionesHeaderDerecha li{
+  padding: 1rem;
+  border-left: 2px solid rgb(137, 94, 94);
+  /* background-color: red; */
+}
+
+.seccionesHeader .seccionesHeaderDerecha li .icon{
+  height: 30px;
+  margin-left: 10px;
+}
+
+.seccionesHeader .seccionesHeaderDerecha li a{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+.seccionesHeader .seccionesHeaderDerecha li a span{
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+}
