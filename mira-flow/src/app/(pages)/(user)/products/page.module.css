@@ -1,0 +1,265 @@
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+
+.container main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.container main .content{
+  width: 100%;
+  height: 100%;
+  padding: 0 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: red; */
+  gap: 1rem;
+}
+.container main .content .productsSection{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: red; */
+  padding: 40px 0;
+  gap: 4rem;
+}
+
+.container main .content .products {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit , minmax(400px, 1fr));
+  justify-items: center;
+  gap: 3.5rem;
+
+}
+
+.container main .content .products .product{
+  height: 240px;
+  border-radius: 10px;
+  transition: all 0.2s;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 200px 200px;
+  grid-template-rows: 200px 40px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* .container main .content .products .product:hover{
+  transform: scale(1.1);
+} */
+
+.container main .content .products .product img{
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px 0 0 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.product .description{
+  /* opacity: 0; */
+  display: flex;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(45deg, rgb(61, 61, 61), #6b6b6b);
+  color: #e7d9c5;
+  transition: all 0.2s;
+  border-radius: 0 10px 0 0 ;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.description h2{
+  color: rgb(224, 156, 29);
+  margin-bottom: 10px;
+}
+
+.product .btn{
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: bold;
+}
+
+.product .btn:nth-last-child(2){
+  background: linear-gradient(45deg, #00a738, #8ea700);
+  border-radius: 0 0 0 5px;
+}
+
+.product .btn:nth-last-child(2):hover{
+  opacity: 0.8;
+}
+
+.product .btn:nth-last-child(1){
+  background: linear-gradient(45deg, #b61717, #b67117);
+  border-radius: 0 0 5px 0;
+}
+
+.product .btn:nth-last-child(1):hover{
+  opacity: 0.8;
+}
+
+.container main .content .pagination{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.container main .content .pagination button{
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.container main .content .filters{
+  /* background-color: blue; */
+  height: 100%;
+  width: 30%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 0;
+  color: #fff;
+}
+
+.container main .content .filters .searchSection{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 5px 20px;
+  width: 100%;
+  /* background-color: green; */
+}
+
+.container main .content .filters .searchSection .icon{
+  height: 30px;
+  padding: 5px;
+  background-color: #b1a9a9;
+  border-radius: 5px 0 0 5px;
+}
+
+.container main .content .filters .searchSection input{
+  height: 40px;
+  width: 70%;
+  padding-left: 10px;
+  font-size: large;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0 5px 5px 0;
+  color: #757575;
+}
+
+.container main .content .filters .searchSection input:active,
+.container main .content .filters .searchSection input:focus{
+  outline: none; /* Asegura que el borde esté desactivado también en estado activo */
+}
+
+.container main .content .filters .filterSection {
+  /* height: 70%; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(142, 114, 114);
+  height: 400px;
+  width: 80%;
+  padding: 20px 0;
+  border-radius: 10px;
+}
+
+.container main .content .filters .filterSection ul{
+  list-style: none;
+}
+
+.container main .content .filters .filterSection ul li{
+  padding: 10px 0;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.container main .content .filters .filterSection ul li input{
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}
+
+.container footer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(59, 59, 59);
+}
+
+.container footer ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  list-style: none;
+  color: #ccc;
+}
+
+.filterButtons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  background: rgb(95, 95, 95);
+  width: 100%;
+  padding: 10px 40px;
+  border-radius: 10px;
+}
+
+.filterButton {
+  padding: 10px 40px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.2s, background-color 0.2s;
+  text-transform: uppercase;
+  border-radius: 20px;
+  font-weight: bold;
+  color: white;
+  background-color: #004ea7;
+  border: rgb(201, 201, 201) 2px solid;
+  outline: none;
+  font-size: 14px; /* Tamaño de fuente fijo */
+
+  /* Suavizado de fuente */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Estabilización de la altura de línea */
+  line-height: 1.2em;
+}
+
+.filterButton:hover {
+  background-color: #0070f3;
+  border: white 2px solid;
+  transform: scale(1.05);
+}
+
+.filterButton.active {
+  border: white 2px solid;
+  background-color: #0070f3;
+  cursor: default;
+}

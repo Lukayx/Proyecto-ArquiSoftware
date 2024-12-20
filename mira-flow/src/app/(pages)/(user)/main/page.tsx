@@ -12,6 +12,8 @@ interface Product {
   Nombre: string;
   Descripcion: string;
   EstadoProducto: string;
+  FechaPublicacion: string;
+  Precio: number;
 }
 
 export default function Home() {
@@ -42,7 +44,7 @@ export default function Home() {
   // Calcular los productos a mostrar en la página actual
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(
+  const currentProducts = filteredProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
@@ -88,6 +90,15 @@ export default function Home() {
     router.push(`/main/${id}`);
   };
 
+  function formatDate(isoDate: string) {
+    const date = new Date(isoDate); // Crear un objeto Date
+    const year = date.getFullYear(); // Obtener el año
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Obtener el mes (0-11) y formatearlo a 2 dígitos
+    const day = String(date.getDate()).padStart(2, '0'); // Obtener el día y formatearlo a 2 dígitos
+  
+    return `${year}-${month}-${day}`; // Devolver en formato YYYY-MM-DD
+  }
+
   return (
     <div className={styles.container}>
       <main>
@@ -99,7 +110,9 @@ export default function Home() {
                   <img src={producto.src} />
                   <div className={styles.description}>
                     <h2>{product.Nombre}</h2>
-                    <p>{product.Descripcion}</p>
+                    {/* <p>{product.Descripcion}</p> */}
+                    <p>Precio: {product.Precio}</p>
+                    <p>Fecha Publicación: {formatDate(product.FechaPublicacion)}</p>
                   </div>
                 </div>
               ))}

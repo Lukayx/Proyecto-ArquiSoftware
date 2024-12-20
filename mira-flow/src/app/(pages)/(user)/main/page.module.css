@@ -81,11 +81,14 @@
   transition: all 0.2s;
   border-radius: 10px;
   padding: 0 20px;
-}
-
-.container main .content .products .product .description p{
   text-align: center;
 }
+
+.description h2{
+  color: rgb(224, 156, 29);
+  margin-bottom: 10px;
+}
+
 
 .container main .content .products .product:hover .description{
   opacity: 1;
